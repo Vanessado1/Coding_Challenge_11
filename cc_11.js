@@ -48,3 +48,24 @@ console.log(borrower1.borrowedBooks); // logged
 borrower1.returnBook("The Great Gatsby"); // removed book title 
 console.log(borrower1.borrowedBooks); // logged 
 // Expected output: []
+
+// Task 3 - Creating a library class 
+class Library {
+    constructor() {
+        this.books = [];// stores books array 
+        this.borrowers = []; // stores borrowers array 
+    }
+    addBook(book) { // adds new book to library 
+        this.books.push(book);
+    }
+    listBooks() { // logs book details 
+        this.books.forEach(book => {console.log(book.getDetails());
+
+        });
+    }
+}
+const library = new Library(); 
+library.addBook(book1);
+library.listBooks();
+// Expected output: "Title: The Great Gatsby, Author: F. Scott Fitzgerald, ISBN: 123456, Copies: 4"
+
