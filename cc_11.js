@@ -63,9 +63,31 @@ class Library {
 
         });
     }
+    // Task 4- Implementing book borrowing 
+    lendBook(borrowerId, isbn) { // find book by ISBN
+        let book = this.books.find(b => b.isbn === isbn); 
+        if (!book || book.copies < 1) {
+            console.log('Book not available.');
+            return;
+        }
+        let borrower = this.borrowers.find(b => b.borrowerId === borrowerId);
+        if (!borrower) {
+            console.log('Borrower not found.');
+            return;
+        }
+        book.updateCopies(-1);
+        borrower.borrowBook(book.title);
+    }
+
 }
 const library = new Library(); 
 library.addBook(book1);
 library.listBooks();
 // Expected output: "Title: The Great Gatsby, Author: F. Scott Fitzgerald, ISBN: 123456, Copies: 4"
 
+// Task 4 test cases 
+library.lendBook(201, 123456);
+console.log(book1.getDetails());
+// Expected output: "Title: The Great Gatsby, Author: F. Scott Fitzgerald, ISBN: 123456, Copies: 3"
+console.log(borrower1.borrowedBooks);
+// Expected output: ["The Great Gatsby"]
